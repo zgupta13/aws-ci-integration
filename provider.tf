@@ -1,6 +1,6 @@
 terraform {
  backend "s3" {
- bucket = "shivangitest1024"
+ bucket = "shivangiest1024"
  key = "globalstate/s3/terraform.tfstate"
  region = "eu-west-1"
  # Replace this with your DynamoDB table name!
