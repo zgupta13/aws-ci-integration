@@ -1,3 +1,4 @@
+/** 
 variable "s3_bucket_name" {
   default     = "shivangiest1024"
   description = "Name of the s3 bucket"
@@ -16,4 +17,4 @@ variable "s3_regions" {
   type    = string
   default = "eu-west-1"
 }
-
+**/
