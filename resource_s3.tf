@@ -1,3 +1,4 @@
+/**
 resource "aws_s3_bucket" "bckt" {
   bucket = var.s3_bucket_name
   force_destroy = true
@@ -36,3 +37,4 @@ resource "aws_dynamodb_table" "locks" {
    type = "S"
  }
 }
+**/
