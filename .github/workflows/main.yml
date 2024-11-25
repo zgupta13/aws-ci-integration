@@ -1,52 +1,43 @@
-name: AWS Terraform Integration using github actions
+name: AWS Terraform integration using github actions 
 
 on:
   push:
     branches:
-      - main
+    - main
+
 jobs:
-  terraform-configure:
+  terrafromconfigre:
     runs-on: ubuntu-latest
     steps:
-        - name: checkout
-          uses: actions/checkout@v4.2.2
-        - name: insttaling and configure aws cli 
-          run: |
-            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-            unzip awscliv2.zip
-            sudo ./aws/install --update
-        - name:  aws configure 
-          run: |
-            mkdir -p ~/.aws
-            touch ~/.aws/credentials
-            echo "[default]
-            aws_access_key_id = ${{secrets.AWS_ACCESS_KEY}}
-            aws_secret_access_key = ${{secrets.AWS_SECRET_ACCESS_KEY}} " > ~/.aws/credentials
-        - name: install terrform 
-          run: |
-            wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-            echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-            sudo apt update && sudo apt install terraform
-        - name: terrform commands 
-          run: |
-           -name: Terraform init
-            run: terraform init
-           -name: Terraform validate
-            run: terraform validate
- 
-           -name: Terraform plan
-            run: terraform plan
- 
-           -name: terraform apply
-            run: |
-             terraform apply-auto-approve
-           -name: wait for resourse verification
-            run: sleep 30
- 
-           -name: terraform destroy
-            run: |
-             terraform destroy -auto-approve
+      - name: checkout
+        uses: actions/checkout@v4.2.2
+      - name: insttaling and configure aws cli 
+        run: |
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          unzip awscliv2.zip
+          sudo ./aws/install --update
+      - name:  aws configure 
+        run: |
+          mkdir -p ~/.aws
+          touch ~/.aws/credentials
+          echo "[default]
+          aws_access_key_id = ${{secrets.AWS_ACCESS_KEY_ID}}
+          aws_secret_access_key = ${{secrets.AWS_SECRET_ACCESS_KEY}} " > ~/.aws/credentials
+      - name: install terrform 
+        run: |
+          wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+          echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+          sudo apt update && sudo apt install terraform
+      - name: terrform commands 
+        run: |
+          terraform init
+          terraform validate 
+          terraform plan 
+          terraform apply --auto-approve 
+          
+          
+          
 
-  
-       
-  
+          
+
+        
