@@ -1,10 +1,10 @@
 terraform {
  backend "s3" {
- bucket = "shubhamtest1024"
+ bucket = "shivangitest1024"
  key = "globalstate/s3/terraform.tfstate"
  region = "eu-west-1"
  # Replace this with your DynamoDB table name!
- dynamodb_table = "Neeha-902903July-dblocks"
+ dynamodb_table = "Shivangi-902903July-dblocks"
  encrypt = true
  }
 }
